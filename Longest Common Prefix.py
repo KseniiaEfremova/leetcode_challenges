@@ -1,29 +1,16 @@
-def find_the_shortest_word(word_list: list) -> int:
-    # O(n) - time complexity
-    # O(1) - space complexity
-    min_len = len(word_list[0])
-    for word in word_list:
-        min_len = min(len(word), min_len)
-    return min_len
-
-
 def longestCommonPrefix(strs: list) -> str:
-    # O(n**2) - time complexity
-    # O(len(longest_pref)) - space complexity
-    longest_pref = []
-    min_len = find_the_shortest_word(strs)
-    for prefix_index in range(min_len):
-        letter = strs[0][prefix_index]
+    for prefix_len in range(len(strs[0])):
+        letter = strs[0][prefix_len]
         common = True
-        for word_index in range(len(strs)):
-            if strs[word_index][prefix_index] != letter:
+        for s in strs:
+            if prefix_len >= len(s) or s[prefix_len] != letter:
                 common = False
                 break
-        if common:
-            longest_pref.append(letter)
-        else:
-            return ''.join(longest_pref)
-    return ''.join(longest_pref)
+        if not common:
+            return strs[0][:prefix_len]
+        if prefix_len + 1 == len(strs[0]):
+            return strs[0][:prefix_len + 1]
+    return ""
 
 
 assert longestCommonPrefix(["flower","flow","flight"]) == "fl"
