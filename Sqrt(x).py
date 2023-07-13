@@ -1,16 +1,3 @@
-def mySqrt2(x: int) -> int:
-    k = 1
-    min_dif = 1000000
-    res = 0
-    while k**2 <= x:
-        if k**2 <= x <= (k+1)**2:
-            if x-k**2 < min_dif:
-                min_dif = x-k**2
-                res = k
-        k += 1
-    return res
-
-
 def mySqrt(x: int) -> int:
     if x == 1:
         return 1
