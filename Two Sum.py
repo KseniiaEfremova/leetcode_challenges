@@ -1,8 +1,6 @@
 def twoSum(nums, target):
     # O(n) - time
     # O(len(d)) - space
-    if len(nums) == 2:
-        return [0, 1]
     d = dict()
     for i in range(len(nums)):
         if nums[i] in d:

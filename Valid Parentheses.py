@@ -1,6 +1,4 @@
 def isValid(s: str) -> bool:
-    if s[0] == ")" or s[0] == "}" or s[0] == "]":
-        return False
     last_char = []
     for el in s:
         if el == "(" or el == "{" or el == "[":

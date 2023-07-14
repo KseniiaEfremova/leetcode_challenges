@@ -8,9 +8,7 @@ def longestCommonPrefix(strs: list) -> str:
                 break
         if not common:
             return strs[0][:prefix_len]
-        if prefix_len + 1 == len(strs[0]):
-            return strs[0][:prefix_len + 1]
-    return ""
+    return strs[0]
 
 
 assert longestCommonPrefix(["flower","flow","flight"]) == "fl"
