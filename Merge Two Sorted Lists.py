@@ -26,32 +26,15 @@ l_5.next = l_9
 r_2.next = r_10
 
 
-# def mergeTwoLists(list1, list2):
-#     if list1 is None:
-#         return list2
-#     if list2 is None:
-#         return list1
-#     if list1 is None and list2 is None:
-#         return None
-#
-#     if list1.val < list2.val:
-#         node = list1
-#         node.next = mergeTwoLists(list1.next, list2)
-#     else:
-#         node = list2
-#         node.next = mergeTwoLists(list1, list2.next)
-#     return node
-
-
-def mergeTwoLists2(list1, list2):
-    head = new_list = Node()
+def mergeTwoLists(list1, list2):
+    head = curr = Node()
     while list1 and list2:
         if list1.val < list2.val:
-            new_list.next = list1
+            curr.next = list1
             list1 = list1.next
         else:
-            new_list.next = list2
+            curr.next = list2
             list2 = list2.next
-        new_list = new_list.next
-    new_list.next = list1 or list2
+        curr = curr.next
+    curr.next = list1 or list2
     return head.next

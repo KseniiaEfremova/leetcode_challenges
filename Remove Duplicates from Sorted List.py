@@ -12,15 +12,13 @@ class ListNode:
 
 
 def deleteDuplicates(head):
-    if head is None:
-        return None
-    if head.next is None:
-        return head
-    head.next = deleteDuplicates(head.next)
-    if head.val == head.next.val:
-        return head.next
-    else:
-        return head
+    curr = head
+    while curr and curr.next:
+        if curr.val == curr.next.val:
+            curr.next = curr.next.next
+        else:
+            curr = curr.next
+    return head
 
 
 node_1 = ListNode(1)
@@ -34,4 +32,5 @@ node_2.next = node_3
 node_3.next = node_4
 node_4.next = node_5
 
-deleteDuplicates(node_5).print_values()
+
+deleteDuplicates(node_1).print_values()

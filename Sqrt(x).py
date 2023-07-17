@@ -1,18 +1,16 @@
 def mySqrt(x: int) -> int:
-    if x == 1:
-        return 1
     high_num = x
     low_num = 0
-    while True:
-        k = ((high_num - low_num) // 2) + low_num
-        if k == low_num or k == high_num:
+    while low_num != high_num:
+        k = ((high_num - low_num + 1) // 2) + low_num
+        k2 = k ** 2
+        if k2 == x:
             return k
-        if k**2 == x:
-            return k
-        if k**2 < x:
+        if k2 < x:
             low_num = k
         else:
-            high_num = k
+            high_num = k - 1
+    return low_num
 
 
 assert mySqrt(1) == 1
