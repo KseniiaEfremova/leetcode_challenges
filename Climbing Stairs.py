@@ -1,19 +1,15 @@
-def climb(n: int, d) -> int:
+def climbStairs(n):
     if n == 1:
         return 1
     if n == 2:
         return 2
-    if n in d:
-        return d[n]
-    else:
-        d[n] = climb(n-1, d) + climb(n-2, d)
-    return d[n]
-
-
-def climbStairs(n):
-    d = {}
-    a = climb(n, d)
-    return a
+    p1 = 1
+    p2 = 2
+    for i in range(n - 2):
+        f = p1 + p2
+        p1 = p2
+        p2 = f
+    return p2
 
 
 assert climbStairs(6) == 13
