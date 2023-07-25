@@ -6,28 +6,28 @@ class Node:
         self.right = right
 
 
+def checkBalance(node):
+    if node.left is None and node.right is None:
+        return 0, True
+    d_left, d_right = 0, 0
+    if node.left is not None:
+        d_left, balanced = checkBalance(node.left)
+        if not balanced:
+            return 0, False
+        d_left += 1
+    if node.right is not None:
+        d_right, balanced = checkBalance(node.right)
+        if not balanced:
+            return 0, False
+        d_right += 1
+    height = max(d_left, d_right)
+    return height, abs(d_left - d_right) < 2
+
+
 def isBalanced(root) -> bool:
     if root is None:
         return True
-    return checkBalance(root.left, root.right)[1]
-
-
-def checkBalance(left, right):
-    if left is None and right is None:
-        return 0, True
-    d_left, d_right = 0, 0
-    if left is not None:
-        d_left, res = checkBalance(left.left, left.right)
-        d_left += 1
-        if not res:
-            return 0, False
-    if right is not None:
-        d_right, res = checkBalance(right.left, right.right)
-        d_right += 1
-        if not res:
-            return 0, False
-    count = max(d_left, d_right)
-    return count, abs(d_left-d_right) < 2
+    return checkBalance(root)[1]
 
 
 node_1 = Node()
