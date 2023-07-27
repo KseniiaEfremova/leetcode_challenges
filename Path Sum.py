@@ -6,8 +6,8 @@ class Node:
         self.right = right
 
 
-node1 = Node(1)
-node2 = Node(2)
+node1 = Node(-2)
+node2 = Node(-3)
 node3 = Node(3)
 node4 = Node(4)
 node5 = Node(5)
@@ -20,12 +20,20 @@ node1.left = node2
 def hasPathSum(root, targetSum: int) -> bool:
     if root is None:
         return False
-    if targetSum < 0:
+    return checkPathSum(root, targetSum, 0)
+
+
+def checkPathSum(root, targetSum, curSum):
+    if root is None:
         return False
-    if targetSum == 0:
+    curSum = curSum + root.val
+    # if curSum > targetSum:
+    #     return False
+    if root.left is None and root.right is None and curSum == targetSum:
         return True
-    else:
-        return hasPathSum(root.left, targetSum - root.val) or hasPathSum(root.right, targetSum - root.val)
+    if root.left is None and root.right is None and curSum != targetSum:
+        return False
+    return checkPathSum(root.left, targetSum, curSum) or checkPathSum(root.right, targetSum, curSum)
 
 
-print(hasPathSum(node1, 1))
+print(hasPathSum(node1, -5))
