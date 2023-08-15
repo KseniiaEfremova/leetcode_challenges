@@ -1,14 +1,16 @@
 def generate(numRows: int):
     # O(n**2) time
-    # O(n) spice
+    # O(n**2) space
     res = [[1]]
-    for i in range(numRows-1):
-        temp = [0] + res[-1] + [0]
+    for i in range(numRows - 1):
         new_row = []
-        for k in range(len(temp)-1):
-            new_row.append(temp[k]+temp[k+1])
+        new_row.append(1)
+        temp = res[-1]
+        for k in range(len(temp) - 1):
+            new_row.append(temp[k] + temp[k + 1])
+        new_row.append(1)
         res.append(new_row)
 
     return res
 
-print(generate(6))
+print(generate(4))

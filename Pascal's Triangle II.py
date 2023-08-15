@@ -10,3 +10,5 @@ def getRow(rowIndex: int):
         res = new_row
 
     return res
+
+print(getRow(4))
