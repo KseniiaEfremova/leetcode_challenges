@@ -6,14 +6,20 @@ class ListNode:
 
 
 def hasCycle(head) -> bool:
-    d = {}
-    while head is not None:
-        d[head] = 0
-        if head.next in d:
+    # O(n) time
+    # O(1) space
+    if head is None or head.next is None:
+        return False
+    left = head
+    right = head.next
+    while right is not None:
+        if left == right:
             return True
-        head = head.next
+        left = left.next
+        if right.next is None:
+            return False
+        right = right.next.next
     return False
-
 
 
 node_3 = ListNode(3)
