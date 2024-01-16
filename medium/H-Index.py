@@ -1,14 +1,9 @@
 def hIndex(citations):
-    if len(citations) < 1:
-        return 0
-    if len(citations) == 1:
-        return 0 if citations[0] == 0 else 1
     citations.sort(reverse=True)
     for i in range(len(citations)):
         if citations[i] < i + 1:
             return i
     return len(citations)
-
 
 
 assert hIndex([3,0,6,1,5]) == 3
