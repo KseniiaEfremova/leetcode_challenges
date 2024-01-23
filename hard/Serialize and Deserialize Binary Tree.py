@@ -14,12 +14,13 @@ def create_tree(data, pointer):
     return node, pointer
 
 
-def from_tree_to_data(root):
+def from_tree_to_data(root, data):
     if root is None:
-        return [None]
-    data = [root.val]
-    data += from_tree_to_data(root.left)
-    data += from_tree_to_data(root.right)
+        data.append(None)
+        return data
+    data.append(root.val)
+    from_tree_to_data(root.left, data)
+    from_tree_to_data(root.right, data)
     return data
 
 
@@ -38,7 +39,7 @@ def from_string_to_list(s):
 
 
 def serialize(root):
-    data = from_tree_to_data(root)
+    data = from_tree_to_data(root, [])
     return from_list_to_string(data)
 
 
@@ -53,18 +54,23 @@ node2 = TreeNode(2)
 node3 = TreeNode(3)
 node4 = TreeNode(4)
 node5 = TreeNode(5)
+node6 = TreeNode(6)
+node7 = TreeNode(7)
 
 node1.left = node2
 node1.right = node3
 node3.left = node4
 node3.right = node5
 
+# node1.left = node2
+# node2.left = node3
+# node3.left = node4
+# node4.left = node5
+# node5.left = node6
+# node6.left = node7
 
 data_tree = "1 2 None None 3 4 None None 5 None None"
 data_tree2 = from_list_to_string([1,2,None, None, 3, None, None])
-# print(serialize(node1))
-print(deserialize(data_tree))
-
 
 
 
